@@ -20,7 +20,7 @@ repositories {
 
 ext {
     set('springCloudVersion', "2020.0.1")
-    set('resilience4jVersion', "1.7.0")
+    set('resilience4jVersion', "1.6.0")
 }
 
 dependencies {
@@ -29,6 +29,12 @@ dependencies {
     implementation 'org.springframework.cloud:spring-cloud-starter-config'
     implementation 'org.springframework.cloud:spring-cloud-starter-loadbalancer'
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+    implementation "io.github.resilience4j:resilience4j-spring-boot2:${resilience4jVersion}"
+
+    implementation 'com.h2database:h2:1.4.200'
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'com.h2database:h2'
     annotationProcessor 'org.projectlombok:lombok'

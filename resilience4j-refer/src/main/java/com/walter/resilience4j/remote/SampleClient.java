@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @LoadBalancerClient(name = "sample", configuration = SampleLoadbalancerConfig.class)
-@FeignClient(name = "sample", fallback = SampleClientFallback.class)
+@FeignClient(name = "sample")
 public interface SampleClient {
 
 	@GetMapping("/users/{id}")

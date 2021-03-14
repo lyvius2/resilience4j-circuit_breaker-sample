@@ -1,3 +1,16 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    open-in-view: true
+  datasource:
+    url: jdbc:h2:~/test;MODE=MYSQL;DB_CLOSE_DELAY=-1;
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+    initialization-mode: always
+
 feign:
   circuitbreaker:
     enabled: true
@@ -7,3 +20,17 @@ feign:
         connectTimeout: 5000
         readTimeout: 5000
         loggerLevel: basic
+
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        registerHealthIndicator: true
+        minimumNumberOfCalls: 4  # 요청 실패나 지연된 응답 수를 계산하기 위해 요구되는 최소 요청의 수
+        failureRateThreshold: 50 # 실패율
+        slidingWindowType: COUNT_BASED # COUNT_BASED는 마지막 n개의 호출 횟수, TIME_BASED는 마지막 n초 동안의 요청의 결과를 집계하여 서킷 발동 여부 판단
